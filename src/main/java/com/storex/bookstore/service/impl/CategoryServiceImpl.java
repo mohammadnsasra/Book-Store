@@ -1,5 +1,6 @@
 package com.storex.bookstore.service.impl;
 
+import com.storex.bookstore.costumeException.ConflictException;
 import com.storex.bookstore.costumeException.NotFoundException;
 import com.storex.bookstore.mapper.CategoryMapper;
 import com.storex.bookstore.model.dto.request.CategoryRequest;
@@ -24,7 +25,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryResponse save(CategoryRequest request) {
-
+       if(this.categoryRepo.findByName(request.getName()).isPresent()){
+           throw new ConflictException("this name of category already exist "+request.getName());
+       }
         Category category=this.categoryMapper.toCategory(request);
 
         category.setCreatedAt(LocalDateTime.now());
@@ -34,7 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryResponse getById(Long id) {
         Category category= this.categoryRepo.getById(id).orElseThrow(()->
-                new NotFoundException("this author does not exist"));
+                new NotFoundException("this category does not exist"));
         return this.categoryMapper.toCategoryResponse(category);
     }
 
@@ -44,6 +47,14 @@ public class CategoryServiceImpl implements CategoryService {
             return this.categoryRepo.findAll().stream().map(c->this.categoryMapper.toCategoryResponse(c)).collect(Collectors.toList());
 
         throw new NotFoundException("Not Found Any Category");
+    }
+
+    @Override
+    public CategoryResponse findByName(String name) {
+        Category category= this.categoryRepo.findByName(name).orElseThrow(()->
+                new NotFoundException("this category does not exist"));
+
+        return this.categoryMapper.toCategoryResponse(category);
     }
 
     @Override

@@ -31,6 +31,11 @@ public class CategoryRepoImpl implements CategoryRepo {
     }
 
     @Override
+    public Optional<Category> findByName(String name) {
+        return this.categoryRepoDb.findByName(name);
+    }
+
+    @Override
     public void deleteById(Long id) {
      this.categoryRepoDb.deleteById(id);
     }

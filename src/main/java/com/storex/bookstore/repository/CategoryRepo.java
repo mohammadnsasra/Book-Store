@@ -7,13 +7,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CategoryRepo {
-   // public List<Category> findById(List<Long> ids);
 
     public Category save(Category category);
 
     public Optional<Category> getById(Long id);
 
     public List<Category> findAll();
+
+    public Optional<Category> findByName(String name);
 
     void deleteById(Long id);
 }

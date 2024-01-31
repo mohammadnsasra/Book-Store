@@ -6,7 +6,9 @@ import com.storex.bookstore.model.dto.response.MessageResponse;
 import com.storex.bookstore.model.entity.Author;
 import com.storex.bookstore.model.entity.Book;
 import com.storex.bookstore.service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,23 +21,24 @@ public class AuthorController {
     private AuthorService authorService;
 
     @PostMapping
-    public AuthorResponse save(@RequestBody AuthorRequest request){
-
-        return this.authorService.save(request);
+    public ResponseEntity<AuthorResponse> save(@Valid @RequestBody AuthorRequest request){
+        return ResponseEntity.ok(this.authorService.save(request));
     }
 
     @GetMapping("/{id}")
-    public AuthorResponse getById(@PathVariable Long id){
+    public ResponseEntity<AuthorResponse> getById(@PathVariable Long id){
 
-        return this.authorService.getById(id);
+        return ResponseEntity.ok(this.authorService.getById(id));
     }
 
     @GetMapping("/get-all")
-    public List<AuthorResponse> getAll(){
-        return this.authorService.findAll();
+    public ResponseEntity<List<AuthorResponse>> getAll(){
+
+        return ResponseEntity.ok(this.authorService.findAll());
     }
+
     @DeleteMapping("/{id}")
-    public MessageResponse deleteById(@PathVariable Long id){
-        return this.authorService.deleteById(id);
+    public ResponseEntity<MessageResponse> deleteById(@PathVariable Long id){
+        return ResponseEntity.ok(this.authorService.deleteById(id));
     }
 }

@@ -1,13 +1,11 @@
 package com.storex.bookstore.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.storex.bookstore.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,11 +30,10 @@ public class Author {
 
 
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt=LocalDateTime.now();;
 
-    @Column(name = "deleted_at", columnDefinition = "TIMESTAMP")
-    private LocalDateTime deletedAt;
+
 
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP")
-    private  LocalDateTime updatedAt;
+    private  LocalDateTime updatedAt=LocalDateTime.now();;
 }

@@ -21,10 +21,14 @@ public class BookRequest {
 
     @NotNull(message = "The Name Of Book is Required")
     @NotEmpty(message = "The Name Of Book should not be empty")
-    @NotBlank(message = "The Name Of Author should not be blank")
+    @NotBlank(message = "The Name Of Book should not be blank")
     @TrimmedString(message = "The Name Of Book must not have leading or trailing spaces")
     private String name;
 
+    @NotNull(message = "The description Of Book is Required")
+    @NotEmpty(message = "The description Of Book should not be empty")
+    @NotBlank(message = "The description Of Book should not be blank")
+    @TrimmedString(message = "The description Of Book must not have leading or trailing spaces")
     private String description;
 
     @NotNull(message = "the createDate is required")
@@ -33,7 +37,7 @@ public class BookRequest {
     @Pattern(regexp = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$", message = " the createDate must be in this format yyyy-MM-dd")
     private String createDate;
 
-    @Min(value = 0,message = "the min of price  is 0")
+    @Min(value = 1,message = "the min of price  is 1")
     private Double price;
 
 

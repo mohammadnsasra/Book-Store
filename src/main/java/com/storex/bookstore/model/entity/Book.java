@@ -2,13 +2,11 @@ package com.storex.bookstore.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.storex.bookstore.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,7 +34,7 @@ public class Book {
 
     private Double price;
     @JsonManagedReference
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     List<BookCategory> bookCategories;
 
     @JsonBackReference
@@ -46,13 +44,11 @@ public class Book {
 
 
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt=LocalDateTime.now();
 
-    @Column(name = "deleted_at", columnDefinition = "TIMESTAMP")
-    private LocalDateTime deletedAt;
 
     @Column(name = "updated_at", columnDefinition = "TIMESTAMP")
-    private  LocalDateTime updatedAt;
+    private  LocalDateTime updatedAt=LocalDateTime.now();
 
 
 

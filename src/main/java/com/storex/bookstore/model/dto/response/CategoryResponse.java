@@ -20,10 +20,7 @@ public class CategoryResponse {
 
     private String name;
 
-
     private LocalDateTime createdAt;
-
-    private LocalDateTime deletedAt;
 
     private  LocalDateTime updatedAt;
 }

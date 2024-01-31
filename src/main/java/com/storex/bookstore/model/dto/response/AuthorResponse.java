@@ -24,8 +24,6 @@ public class AuthorResponse {
 
     private LocalDateTime createdAt;
 
-    private LocalDateTime deletedAt;
-
     private  LocalDateTime updatedAt;
 }
 

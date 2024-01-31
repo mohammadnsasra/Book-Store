@@ -3,7 +3,9 @@ package com.storex.bookstore.controller;
 import com.storex.bookstore.model.dto.request.BookCategoryRequest;
 import com.storex.bookstore.model.dto.response.BookCategoryResponse;
 import com.storex.bookstore.service.BookCategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +18,8 @@ public class BookCategoryController {
     private BookCategoryService bookCategoryService;
 
     @PostMapping
-    public BookCategoryResponse save(@RequestBody BookCategoryRequest request){
+    public ResponseEntity<BookCategoryResponse> save(@Valid @RequestBody BookCategoryRequest request){
 
-        return this.bookCategoryService.save(request);
+        return ResponseEntity.ok(this.bookCategoryService.save(request));
     }
 }
