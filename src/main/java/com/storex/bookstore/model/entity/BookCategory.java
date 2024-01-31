@@ -14,6 +14,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "book_category")
 public class BookCategory {
+
+    @Transient
+    private String categoryName;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,4 +38,8 @@ public class BookCategory {
     @JoinColumn(name="category_id",insertable = false,updatable = false)
     @ManyToOne
     private Category category;
+
+    public String getCategoryName() {
+       return this.category.getName();
+    }
 }

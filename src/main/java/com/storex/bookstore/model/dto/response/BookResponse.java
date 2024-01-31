@@ -32,7 +32,6 @@ public class BookResponse {
 
     List<BookCategoryResponse> bookCategories;
 
-
     private LocalDateTime createdAt;
 
     private  LocalDateTime updatedAt;

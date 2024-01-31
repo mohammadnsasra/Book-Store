@@ -1,22 +1,16 @@
 package com.storex.bookstore.service.impl;
 
-import com.storex.bookstore.costumeException.ConflictException;
 import com.storex.bookstore.costumeException.NotFoundException;
 import com.storex.bookstore.mapper.BookMapper;
 import com.storex.bookstore.model.dto.request.BookRequest;
-import com.storex.bookstore.model.dto.response.BookProjection;
 import com.storex.bookstore.model.dto.response.BookResponse;
 import com.storex.bookstore.model.dto.response.MessageResponse;
 import com.storex.bookstore.model.entity.Book;
 import com.storex.bookstore.repository.AuthorRepo;
 import com.storex.bookstore.repository.BookRepo;
 import com.storex.bookstore.repository.CategoryRepo;
-import com.storex.bookstore.service.AuthorService;
 import com.storex.bookstore.service.BookService;
-import com.storex.bookstore.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;

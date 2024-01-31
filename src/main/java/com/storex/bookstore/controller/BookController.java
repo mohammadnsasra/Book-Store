@@ -1,16 +1,13 @@
 package com.storex.bookstore.controller;
 
 import com.storex.bookstore.model.dto.request.BookRequest;
-import com.storex.bookstore.model.dto.response.BookProjection;
 import com.storex.bookstore.model.dto.response.BookResponse;
 import com.storex.bookstore.model.dto.response.MessageResponse;
 import com.storex.bookstore.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 

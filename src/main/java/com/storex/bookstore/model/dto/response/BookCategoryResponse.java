@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 
 public class BookCategoryResponse {
 
+    private String categoryName;
+
     private Long id;
 
     private Long bookId;
