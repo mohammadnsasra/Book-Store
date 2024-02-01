@@ -22,6 +22,7 @@ public interface BookRepo {
 
     public List<Book> findByCategoryId(Long categoryId);
 
+    public void saveAll(List<Book> books);
 
 }
 

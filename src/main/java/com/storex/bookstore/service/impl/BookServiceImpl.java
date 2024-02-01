@@ -86,7 +86,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookResponse> findByCategoryId(Long categoryId) {
-        if(this.categoryRepo.getById(categoryId) ==null){
+        if(this.categoryRepo.getById(categoryId).isEmpty()){
             throw new NotFoundException("this category does not exist "+ categoryId);
         }
         List<Book> book= this.bookRepo.findByCategoryId(categoryId);

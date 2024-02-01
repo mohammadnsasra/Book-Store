@@ -29,11 +29,11 @@ public class Category {
     private String name;
 
     @JsonBackReference
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     List<Book> books;
 
-    private LocalDateTime createdAt=LocalDateTime.now();;
+    private LocalDateTime createdAt=LocalDateTime.now();
 
-    private  LocalDateTime updatedAt=LocalDateTime.now();;
+    private  LocalDateTime updatedAt=LocalDateTime.now();
 
 }

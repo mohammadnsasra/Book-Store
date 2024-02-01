@@ -35,7 +35,7 @@ public class Book {
     private Double price;
 
     @JsonManagedReference
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany
     @JoinTable(
             name = "book_category",
             joinColumns = { @JoinColumn(name = "book_id") },

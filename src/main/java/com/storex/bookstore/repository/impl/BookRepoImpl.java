@@ -1,14 +1,11 @@
 package com.storex.bookstore.repository.impl;
 
-import com.storex.bookstore.model.dto.response.BookProjection;
+
 import com.storex.bookstore.model.entity.Book;
 import com.storex.bookstore.repository.BookRepo;
 import com.storex.bookstore.repository.mysql.BookRepoDb;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +47,11 @@ public class BookRepoImpl implements BookRepo {
     @Override
     public List<Book> findByCategoryId(Long categoryId) {
         return this.bookRepoDb.findByCategories_Id(categoryId);
+    }
+
+    @Override
+    public void saveAll(List<Book> books) {
+        this.bookRepoDb.saveAll(books);
     }
 
 
