@@ -11,7 +11,7 @@ public interface BookProjection {
      String getPrice();
      String getDescription();
 
-    List<BookCategoryResponse> getBookCategories();
+   // List<BookCategoryResponse> getBookCategories();
 
      LocalDateTime getCreatedAt();
      LocalDateTime getUpdatedAt();

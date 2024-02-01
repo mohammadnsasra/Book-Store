@@ -6,6 +6,7 @@ import com.storex.bookstore.model.dto.request.BookRequest;
 import com.storex.bookstore.model.dto.response.BookResponse;
 import com.storex.bookstore.model.dto.response.MessageResponse;
 import com.storex.bookstore.model.entity.Book;
+import com.storex.bookstore.model.entity.Category;
 import com.storex.bookstore.repository.AuthorRepo;
 import com.storex.bookstore.repository.BookRepo;
 import com.storex.bookstore.repository.CategoryRepo;
@@ -13,6 +14,7 @@ import com.storex.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +38,14 @@ public class BookServiceImpl implements BookService {
                 new NotFoundException("this Author does not exist " +request.getAuthorId()));
 
         Book book=this.bookMapper.toBook(request);
+        List<Category> categoryList=new ArrayList<>();
+        for (Long categoryId : request.getCategoryIds()) {
+            Category category = this.categoryRepo.getById(categoryId).orElseThrow(() ->
+                    new NotFoundException("this category does not exist"));
+           categoryList.add(category);
+        }
+
+        book.setCategories(categoryList);
         book.setCreatedAt(LocalDateTime.now());
 
         return this.bookMapper.toBookResponse(this.bookRepo.save(book));
@@ -76,11 +86,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookResponse> findByCategoryId(Long categoryId) {
-        if(this.categoryRepo.getById(categoryId).isEmpty()){
-            throw new NotFoundException("this category not found");
+        if(this.categoryRepo.getById(categoryId) ==null){
+            throw new NotFoundException("this category does not exist "+ categoryId);
         }
         List<Book> book= this.bookRepo.findByCategoryId(categoryId);
-     return   book.stream().map(c->this.bookMapper.toBookResponse(c)).collect(Collectors.toList());
+        return   book.stream().map(c->this.bookMapper.toBookResponse(c)).collect(Collectors.toList());
     }
 
 
@@ -92,12 +102,19 @@ public class BookServiceImpl implements BookService {
         Book book=this.bookRepo.getById(bookId).orElseThrow(()->
                 new NotFoundException("this book does not exist "+bookId));
 
-      book.setName(request.getName());
-      book.setCreateDate(request.getCreateDate());
-      book.setDescription(request.getDescription());
-      book.setAuthorId(request.getAuthorId());
-      book.setPrice(request.getPrice());
-       book.setUpdatedAt(LocalDateTime.now());
+        List<Category> categoryList=new ArrayList<>();
+        for (Long categoryId : request.getCategoryIds()) {
+            Category category = this.categoryRepo.getById(categoryId).orElseThrow(() ->
+                    new NotFoundException("this category does not exist"));
+            categoryList.add(category);
+        }
+        book.setCategories(categoryList);
+        book.setName(request.getName());
+        book.setCreateDate(request.getCreateDate());
+        book.setDescription(request.getDescription());
+        book.setAuthorId(request.getAuthorId());
+        book.setPrice(request.getPrice());
+        book.setUpdatedAt(LocalDateTime.now());
 
      return   this.bookMapper.toBookResponse(this.bookRepo.save(book));
     }

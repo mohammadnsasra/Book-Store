@@ -1,6 +1,7 @@
 package com.storex.bookstore.model.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,9 +28,9 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    List<BookCategory> bookCategories;
+    @JsonBackReference
+    @ManyToMany(mappedBy = "categories")
+    List<Book> books;
 
     private LocalDateTime createdAt=LocalDateTime.now();;
 

@@ -2,8 +2,6 @@ package com.storex.bookstore.model.dto.response;
 
 
 
-import com.storex.bookstore.model.entity.Author;
-import com.storex.bookstore.model.entity.BookCategory;
 import com.storex.bookstore.model.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +28,7 @@ public class BookResponse {
 
     private String description;
 
-    List<BookCategoryResponse> bookCategories;
+    List<CategoryResponse> categories;
 
     private LocalDateTime createdAt;
 

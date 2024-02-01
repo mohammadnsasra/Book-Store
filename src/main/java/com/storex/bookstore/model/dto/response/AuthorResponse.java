@@ -27,7 +27,4 @@ public class AuthorResponse {
     private  LocalDateTime updatedAt;
 }
 
-// get ->
-// in book -> get book by auth id
-// in auth -> get book by aut id
 

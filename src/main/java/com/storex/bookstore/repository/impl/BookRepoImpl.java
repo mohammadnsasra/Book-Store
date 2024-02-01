@@ -49,7 +49,7 @@ public class BookRepoImpl implements BookRepo {
 
     @Override
     public List<Book> findByCategoryId(Long categoryId) {
-        return this.bookRepoDb.findByBookCategories_CategoryId(categoryId);
+        return this.bookRepoDb.findByCategories_Id(categoryId);
     }
 
 

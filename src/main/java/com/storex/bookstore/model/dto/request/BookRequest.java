@@ -40,5 +40,7 @@ public class BookRequest {
     @Min(value = 1,message = "the min of price  is 1")
     private Double price;
 
+    private List<Long> categoryIds;
+
 
 }

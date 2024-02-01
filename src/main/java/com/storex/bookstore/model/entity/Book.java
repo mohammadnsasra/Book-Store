@@ -33,9 +33,15 @@ public class Book {
     private String createDate;
 
     private Double price;
+
     @JsonManagedReference
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    List<BookCategory> bookCategories;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "book_category",
+            joinColumns = { @JoinColumn(name = "book_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+    )
+    List<Category> categories;
 
     @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)

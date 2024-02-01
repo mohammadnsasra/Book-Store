@@ -16,6 +16,6 @@ public interface BookRepoDb extends JpaRepository<Book,Long> {
 
     public List<Book> findByAuthorId(Long authorId);
 
-    List<Book> findByBookCategories_CategoryId(Long categoryId);
+    List<Book> findByCategories_Id(Long categoryId);
 
 }
